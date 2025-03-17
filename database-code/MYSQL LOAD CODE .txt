@@ -1,0 +1,612 @@
+Microsoft Windows [Version 10.0.22621.1702]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\crystal>cd ../../
+
+C:\>mysql
+ERROR 1045 (28000): Access denied for user 'ODBC'@'localhost' (using password: NO)
+
+C:\>mysql -uroot -proot
+mysql: [Warning] Using a password on the command line interface can be insecure.
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 171
+Server version: 5.7.24 MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use crm
+Database changed
+mysql> create table company_pemba_raw (
+    -> IDContact text,
+    -> Company text,
+    -> Company_type text,
+    -> Country text,
+    -> Area text,
+    -> Type_of_sale text,
+    -> Software text,
+    -> Big_name text,
+    -> Key_account text
+    -> );
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> load data local infile 'c:\\pemba\\csv\\contact_company_2_use.csv' into table contact_pemba_raw
+    ->  fields terminated by ','
+    ->  enclosed by '"'
+    ->  lines terminated by '\n'
+    ->  ignore 1 rows;
+Query OK, 13681 rows affected, 65535 warnings (0.25 sec)
+Records: 13681  Deleted: 0  Skipped: 0  Warnings: 519878
+
+mysql> create table 25923_companies_pemba_raw (
+    -> Site text,
+    -> Company text,
+    -> Group text,
+    -> Country text,
+    -> Area text,
+    -> company_Type text,
+    -> Research text,
+    -> Big_name text,
+    -> Key_account text,
+    -> Distributor text,
+    -> Confidentiality_agreement_NDA text );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Group text,
+Country text,
+Area text,
+company_Type text,
+Research text,
+Big_name ' at line 4
+mysql> create table 25923_companies_pemba_raw ();
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1
+mysql> create table companies_25923_pemba_raw (
+    -> Site text,
+    -> Company text,
+    -> Group text,
+    -> Country text,
+    -> Area text,
+    -> company_Type text,
+    -> Research text,
+    -> Big_name text,
+    -> Key_account text,
+    -> Distributor text,
+    -> Confidentiality_agreement_NDA text );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Group text,
+Country text,
+Area text,
+company_Type text,
+Research text,
+Big_name ' at line 4
+mysql> create table 25923_companies_pemba_raw (
+    -> Site text,
+    -> Company text,
+    -> company_Group text,
+    -> Country text,
+    -> Area text,
+    -> company_Type text,
+    -> Research text,
+    -> Big_name text,
+    -> Key_account text,
+    -> Distributor text,
+    -> Confidential_agree_NDA text );
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> load data local infile 'c:\\pemba\\csv\\25923_companies_piped.csv' into table contact_pemba_raw
+    ->  fields terminated by ','
+    ->  enclosed by '"'
+    ->  lines terminated by '\n'
+    ->  ignore 1 rows;
+Query OK, 25923 rows affected, 65535 warnings (0.31 sec)
+Records: 25923  Deleted: 0  Skipped: 0  Warnings: 933228
+
+mysql> create table 9657_licenses_pemba_raw(
+    -> ID_License text,
+    -> Internal_number text,
+    -> Developer_number text,
+    -> Access_code text,
+    -> Author text,
+    -> Software text,
+    -> License_expir_date text,
+    -> Maintenance_expir_date text,
+    -> Link_ID text,
+    -> Link_type text,
+    -> License_type text,
+    -> Name text,
+    -> First name text,
+    -> Email text,
+    -> Company text,
+    -> Type_of_company text,
+    -> Country text,
+    -> Area text,
+    -> Continent text,
+    -> State text,
+    -> USA area text,
+    -> Distributor text,
+    -> Deployment text,
+    -> Number_of_user text,
+    -> Dongle_ID text,
+    -> Protection text,
+    -> Version text,
+    -> Modules text,
+    -> Creation_date text,
+    -> Modification_date text,
+    -> On_standby text,
+    -> Deactivation text,
+    -> MAC_Address
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'name text,
+Email text,
+Company text,
+Type_of_company text,
+Country text,
+Area te' at line 14
+mysql> create table 9657_licenses_pemba_raw(
+    -> ID_License text );
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> drop table 9657_licenses_pemba_raw;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> create table 9657_licenses_pemba_raw(
+    -> ID_License text,
+    -> Internal_number text,
+    -> Developer_number text,
+    -> Access_code text,
+    -> Author text );
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> drop table 9657_licenses_pemba_raw;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> create table 9657_licenses_pemba_raw(
+    -> ID_License text,
+    -> Internal_number text,
+    -> Developer_number text,
+    -> Access_code text,
+    -> Author text,
+    -> Software text );
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> drop table 9657_licenses_pemba_raw;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> create table licenses(
+    -> ID_License text,
+    -> Internal_number text,
+    -> Developer_number text,
+    -> Access_code text,
+    -> Author text,
+    -> Software text,
+    -> License_expir_date text,
+    -> Maintenance_expir_date text,
+    -> Link_ID text,
+    -> Link_type text,
+    -> License_type text,
+    -> Name text,
+    -> First name text,
+    -> Email text,
+    -> Company text,
+    -> Type_of_company text,
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'name text,
+Email text,
+Company text,
+Type_of_company text,
+)' at line 14
+mysql> create table licenses(
+    -> ID_License text,
+    -> Internal_number text,
+    -> Developer_number text,
+    -> Access_code text,
+    -> Author text,
+    -> Software text,
+    -> License_expir_date text,
+    -> Maintenance_expir_date text,
+    -> Link_ID text,
+    -> Link_type text,
+    -> License_type text,
+    -> Name text,
+    -> First name text,
+    -> Email text,
+    -> Company text,
+    -> Type_of_company text,
+    -> Country text,
+    -> Area text,
+    -> Continent text
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'name text,
+Email text,
+Company text,
+Type_of_company text,
+Country text,
+Area te' at line 14
+mysql> create table licenses(
+    -> ID_License text,
+    -> Internal_number text,
+    -> Developer_number text,
+    -> Access_code text,
+    -> Author text,
+    -> Software text,
+    -> License_expir_date text,
+    -> Maintenance_expir_date text,
+    -> Link_ID text,
+    -> Link_type text,
+    -> License_type text,
+    -> Name text,
+    -> First name text,
+    -> Email text,
+    -> Company text,
+    -> Type_of_company text,
+    -> Country text,
+    -> License_Area text,
+    -> Continent text,
+    -> License_State text);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'name text,
+Email text,
+Company text,
+Type_of_company text,
+Country text,
+License' at line 14
+mysql> create table licenses(
+    -> ID_License text,
+    -> Internal_number text,
+    -> Developer_number text,
+    -> Access_code text,
+    -> Author text,
+    -> Software text,
+    -> License_expir_date text,
+    -> Maintenance_expir_date text);
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> drop table licenses;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> create table licenses(
+    -> ID_License text,
+    -> Internal_number text,
+    -> Developer_number text,
+    -> Access_code text,
+    -> Author text,
+    -> Software text,
+    -> License_expir_date text,
+    -> Maintenance_expir_date text,
+    -> License_Link_ID text,
+    -> License_Link_type text );
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> drop table licenses;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> create table licenses(
+    -> ID_License text,
+    -> Internal_number text,
+    -> Developer_number text,
+    -> Access_code text,
+    -> Author text,
+    -> Software text,
+    -> License_expir_date text,
+    -> Maintenance_expir_date text,
+    -> License_Link_ID text,
+    -> License_Link_type text,
+    -> License_type text,
+    -> Name text,
+    -> First name text,
+    -> Email text,
+    -> Company text,
+    -> Type_of_company text,
+    -> Country text,
+    -> License_Area text,
+    -> Continent text,
+    -> License_State text,
+    -> USA_area text);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'name text,
+Email text,
+Company text,
+Type_of_company text,
+Country text,
+License' at line 14
+mysql> create table licenses(
+    -> ID_License text,
+    -> Internal_number text,
+    -> Developer_number text,
+    -> Access_code text,
+    -> Author text,
+    -> Software text,
+    -> License_expir_date text,
+    -> Maintenance_expir_date text,
+    -> License_Link_ID text );
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> drop table licenses;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> create table licenses(
+    -> ID_License text,
+    -> Internal_number text,
+    -> Developer_number text,
+    -> Access_code text,
+    -> Author text,
+    -> Software text,
+    -> License_expir_date text,
+    -> Maintenance_expir_date text,
+    -> License_Link_ID text,
+    -> License_Link_type text );
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> drop table licenses;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> create table licenses(
+    -> ID_License text,
+    -> Internal_number text,
+    -> Developer_number text,
+    -> Access_code text,
+    -> Author text,
+    -> Software text,
+    -> License_expir_date text,
+    -> Maintenance_expir_date text,
+    -> License_Link_ID text,
+    -> License_Link_type text,
+    -> License_type text );
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> drop table licenses;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> create table licenses(
+    -> ID_License text,
+    -> Internal_number text,
+    -> Developer_number text,
+    -> Access_code text,
+    -> Author text,
+    -> Software text,
+    -> License_expir_date text,
+    -> Maintenance_expir_date text,
+    -> License_Link_ID text,
+    -> License_Link_type text,
+    -> License_type text,
+    -> Name text,
+    -> First name text,
+    -> Email text,
+    -> Company text,
+    -> Type_of_company text,
+    -> Country text,
+    -> License_Area text,
+    -> Continent text,
+    -> License_State text,
+    -> USA_area text,
+    -> Distributor text,
+    -> Deployment text,
+    -> Number_of_user text,
+    -> Dongle_ID text,
+    -> Protection text,
+    -> Version text,
+    -> Modules text,
+    -> Creation_date text,
+    -> Modification_date text,
+    -> On_standby text,
+    -> Deactivation text,
+    -> MAC_Address  text
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'name text,
+Email text,
+Company text,
+Type_of_company text,
+Country text,
+License' at line 14
+mysql>
+mysql> create table licenses(
+    -> ID_License text,
+    -> Internal_number text,
+    -> Developer_number text,
+    -> Access_code text,
+    -> Author text,
+    -> Software text,
+    -> License_expir_date text,
+    -> Maintenance_expir_date text,
+    -> License_Link_ID text,
+    -> License_Link_type text,
+    -> License_type text,
+    -> License_Name text,
+    -> First name text,
+    -> Email text,
+    -> Company text,
+    -> Type_of_company text,
+    -> Country text,
+    -> License_Area text,
+    -> Continent text,
+    -> License_State text,
+    -> USA_area text,
+    -> Distributor text,
+    -> Deployment text,
+    -> Number_of_user text,
+    -> Dongle_ID text,
+    -> Protection text,
+    -> Version text,
+    -> Modules text,
+    -> Creation_date text,
+    -> Modification_date text,
+    -> On_standby text,
+    -> Deactivation text,
+    -> MAC_Address  text
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'name text,
+Email text,
+Company text,
+Type_of_company text,
+Country text,
+License' at line 14
+mysql> create table licenses(
+    -> License_Name text,
+    -> First name text,
+    -> Email text,
+    -> Company text,
+    -> Type_of_company text,
+    -> Country text,
+    -> License_Area text,
+    -> Continent text,
+    -> License_State text,
+    -> USA_area text,
+    -> Distributor text,
+    -> Deployment text,
+    -> Number_of_user text,
+    -> Dongle_ID text,
+    -> Protection text,
+    -> Version text,
+    -> Modules text,
+    -> Creation_date text,
+    -> Modification_date text,
+    -> On_standby text,
+    -> Deactivation text,
+    -> MAC_Address  text
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'name text,
+Email text,
+Company text,
+Type_of_company text,
+Country text,
+License' at line 3
+mysql> create table licenses(
+    -> ID_License text,
+    -> Internal_number text,
+    -> Developer_number text,
+    -> Access_code text,
+    -> Author text,
+    -> Software text,
+    -> License_expir_date text,
+    -> Maintenance_expir_date text,
+    -> License_Link_ID text,
+    -> License_Link_type text,
+    -> License_type text,
+    -> License_Name text,
+    -> First_name text,
+    -> Email text,
+    -> Company text,
+    -> Type_of_company text,
+    -> Country text,
+    -> License_Area text,
+    -> Continent text,
+    -> License_State text,
+    -> USA_area text,
+    -> Distributor text,
+    -> Deployment text,
+    -> Number_of_user text,
+    -> Dongle_ID text,
+    -> Protection text,
+    -> Version text,
+    -> Modules text,
+    -> Creation_date text,
+    -> Modification_date text,
+    -> On_standby text,
+    -> Deactivation text,
+    -> MAC_Address  text
+    -> );
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> drop table licenses;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> create table 9657_licenses_pemba_raw(
+    -> ID_License text,
+    -> Internal_number text,
+    -> Developer_number text,
+    -> Access_code text,
+    -> Author text,
+    -> Software text,
+    -> License_expir_date text,
+    -> Maintenance_expir_date text,
+    -> License_Link_ID text,
+    -> License_Link_type text,
+    -> License_type text,
+    -> License_Name text,
+    -> First_name text,
+    -> Email text,
+    -> Company text,
+    -> Type_of_company text,
+    -> Country text,
+    -> License_Area text,
+    -> Continent text,
+    -> License_State text,
+    -> USA_area text,
+    -> Distributor text,
+    -> Deployment text,
+    -> Number_of_user text,
+    -> Dongle_ID text,
+    -> Protection text,
+    -> Version text,
+    -> Modules text,
+    -> Creation_date text,
+    -> Modification_date text,
+    -> On_standby text,
+    -> Deactivation text,
+    -> MAC_Address  text
+    -> );
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> load data local infile 'c:\\pemba\\csv\\9657_licenses.csv' into table 9657_licenses_pemba_raw
+    ->  fields terminated by ','
+    ->  enclosed by '"'
+    ->  lines terminated by '\n'
+    ->  ignore 1 rows;
+Query OK, 9657 rows affected (0.18 sec)
+Records: 9657  Deleted: 0  Skipped: 0  Warnings: 0
+
+mysql> load data local infile 'c:\\pemba\\csv\\contact_company_2_use.csv' into table company_pemba_raw
+    ->  fields terminated by ','
+    ->  enclosed by '"'
+    ->  lines terminated by '\n'
+    ->  ignore 1 rows;
+Query OK, 13681 rows affected (0.12 sec)
+Records: 13681  Deleted: 0  Skipped: 0  Warnings: 0
+
+mysql> dump table contact_pemba_raw;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'dump table contact_pemba_raw' at line 1
+mysql> truncate table contact_pemba_raw;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> load data local infile 'c:\\pemba\\csv\\Contact_2_use_escapecomma.csv' into table contact_pemba_raw
+    ->  fields terminated by ','
+    ->  enclosed by '"'
+    ->  lines terminated by '\n'
+    ->  ignore 1 rows;
+Query OK, 134 rows affected, 134 warnings (0.02 sec)
+Records: 134  Deleted: 0  Skipped: 0  Warnings: 134
+
+mysql> load data local infile 'c:\\pemba\\csv\\maintenance.csv' into table maintenance
+    ->  fields terminated by ','
+    ->  enclosed by '"'
+    ->  lines terminated by '\n'
+    ->  ignore 1 rows;
+ERROR 1300 (HY000): Invalid utf8 character string: '"Geometric Talks '
+mysql> load data local infile 'c:\\pemba\\csv\\maintenance.csv' into table maintenance
+    ->  fields terminated by ','
+    ->  enclosed by '"'
+    ->  lines terminated by '\n'
+    ->  ignore 1 rows;
+ERROR 1300 (HY000): Invalid utf8 character string: '"Geometric Talks '
+mysql>  load data local infile 'c:\\pemba\\csv\\maintenance.csv' into table maintenance
+    ->  fields terminated by ','
+    ->  enclosed by '"'
+    ->  lines terminated by '\n'
+    ->  ignore 1 rows;
+ERROR 1300 (HY000): Invalid utf8 character string: '"Geometric Talks '
+mysql> load data local infile 'c:\\pemba\\csv\\maintenance.csv' into table maintenance
+    ->  fields terminated by ','
+    ->  enclosed by '"'
+    ->  lines terminated by '\n'
+    ->  enclosed by '"'
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'enclosed by '"'' at line 5
+mysql> load data local infile 'c:\\pemba\\csv\\57_maintenance.csv' into table maintenance
+    ->  fields terminated by ','
+    ->  enclosed by '"'
+    ->  lines terminated by '\n'
+    ->  ignore 1 rows;
+Query OK, 59 rows affected, 50 warnings (0.01 sec)
+Records: 59  Deleted: 0  Skipped: 0  Warnings: 50
+
+mysql>
