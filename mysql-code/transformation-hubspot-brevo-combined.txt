@@ -1,0 +1,108 @@
+
+
+SELECT * FROM `tbl_hubspot_newsletter_submission_raw` WHERE `Contact email` not like 'crystal.hansen@emtp.com';
+
+
+
+Select * from tbl_hubspot_newsletter_submission_raw
+where `Email` not like ('crystal.is.hanse@gmail.com','"redacted"', 'beautiful-human@emtp.com','test.crystal.hansen@emtp.com')
+c@emt.com
+test.crystal
+crystal.test@emtp.com
+test
+testme@emtp.com
+
+Select * from tbl_hubspot_newsletter_submission_raw
+WHERE `Email` NOT LIKE '%crystal.hans%'
+AND `Email` NOT LIKE '%beautiful-human%'
+AND `Email` NOT LIKE '%test%'
+AND `Email` NOT LIKE '%crystal%'
+AND `Email` NOT LIKE '%c@emt.com%'
+AND `Email` NOT LIKE '%"redacted"%'
+
+
+george.jonson@connect.joe
+
+-- Exclude all test case emails
+Results in 60 records
+CREATE TABLE tbl_hubspot_newsletter_submissions_clean AS
+Select * from tbl_hubspot_newsletter_submission_raw
+WHERE `Email` NOT LIKE '%crystal.hans%'
+AND `Email` NOT LIKE '%beautiful-human%'
+AND `Email` NOT LIKE '%test%'
+AND `Email` NOT LIKE '%crystal%'
+AND `Email` NOT LIKE '%c@emt.com%'
+AND `Email` NOT LIKE '%redacted%'
+AND `Email` NOT LIKE '%george.jonson@connect.joe%';
+
+
+
+SELECT * FROM `tbl_brevo_contact_raw` bcr
+join tbl_hubspot_newsletter_submissions_clean hnsc on bcr.`EMAIL` = hnsc.`Email`
+
+Results in 59 records
+
+-- Insert into a new table for output
+
+CREATE TABLE tbl_brevo_hubspot_newsletter_submissions_combined AS
+Select 
+bcr.*, 
+hnsc.`Email` as hbspt_email,	
+hnsc.`Conversion Date`,
+hnsc.`Conversion Page`,
+hnsc.`Conversion Title`,
+hnsc.`Contact first name`,
+hnsc.`Contact last name`,
+hnsc.`Contact email`,
+hnsc.`Contact ID` as hbspt_contactid
+FROM `tbl_brevo_contact_raw` bcr
+join tbl_hubspot_newsletter_submissions_clean hnsc 
+on bcr.`EMAIL` = hnsc.`Email`
+
+-- select from the hubspot clean and hubspot raw for that one missing value. 
+-- Shows duplicate record of email dqcmdbpqhm.j@rightbliss.beauty  records 29991, 29992
+Select * from tbl_hubspot_newsletter_submissions_clean hnsc 
+join tbl_brevo_hubspot_newsletter_submissions_combined hnsc2 
+on hnsc.`Email` != hnsc2.`hbspt_email` 
+AND hnsc.`Contact ID` = hnsc2.hbspt_contactid
+
+
+
+
+SELECT * FROM `tbl_hubspot_sync_contact_with_gdpr_field` hscwgf
+join tbl_hubspot_newsletter_submissions_clean hnsc
+on hscwgf.`EMAIL` = hnsc.`Email`
+
+
+
+#### Sept 3 2024 #############
+
+
+SELECT * FROM `tbl_hubspot_contacts_subscription` where `Pemba Unsubscribed from all emails` = 'No'
+
+SELECT * FROM `tbl_hubspot_contacts_subscription` where `Pemba Unsubscribed from all emails` = 'Yes'
+
+SELECT * FROM `tbl_hubspot_contacts_subscription` where `Pemba Unsubscribed from all emails` = 'Yes' and `Email`<>''
+
+
+CREATE TABLE tbl_brevo_hubspot_contact_subscribed
+Select * from `tbl_hubspot_contacts_subscription`
+WHERE `Pemba Unsubscribed from all emails` = 'No' 
+    and `Email` <>''
+
+
+
+CREATE TABLE tbl_brevo_hubspot_contact_subscribed_load AS
+Select 
+    `CONTACT_ID`,
+    hcs.`EMAIL`	,
+    `First Name` as `FIRSTNAME`	,
+    `Last Name` as `LASTNAME`	,
+    `Phone Number` as `SMS`,	
+    `Record ID` as `Hubspot_contact_id`
+from `tbl_brevo_hubspot_contact_subscribed` hcs
+join tbl_brevo_contact_raw bcr
+on hcs.email = bcr.email
+
+
+

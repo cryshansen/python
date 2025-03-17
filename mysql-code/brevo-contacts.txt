@@ -1,0 +1,233 @@
+cd ../../
+mysql -uroot -proot
+use brevo
+
+
+DROP TABLE IF EXISTS `tbl_brevo_contact_raw`; 
+CREATE TABLE tbl_brevo_contact_raw(
+`CONTACT_ID` text,
+`EMAIL` text,
+`LASTNAME` text,
+`FIRSTNAME` text,
+`SMS` text,
+`COUNTRY` text,
+`PHONE_NUMBER` text,
+`CIVILITY` text,
+`JOB_POSITION` text,
+`ZONE` text,
+`STATE` text,
+`COMPANY` text,
+`COMPANY_TYPE` text,
+`CITY` text,
+`BIG_NAME` text,
+`KEY_ACCOUNT` text,
+`URL` text,
+`ID` text,
+`DEV_NUMBER` text,
+`ACCESS_CODE` text,
+`NAME` text,
+`ADDED_TIME` text,
+`MODIFIED_TIME` text,
+`HOLDING` text,
+`GDPR` text,
+`TELEPHONE` text,
+`PREFERENCE` text,
+`WHATSAPP` text,
+`RECORD_ID` text,
+`ADDED_TIME1` text,
+`MODIFIED_TIME1` text
+);
+
+
+
+load data local infile 'C:\\Users\\crystal\\hubspot-git\\Brevo\\inputs\\contacts-brevo.csv'  
+into table tbl_brevo_contact_raw
+fields terminated by ';'
+lines terminated by '\n'
+ignore 1 rows;
+
+
+--Hubspot syncd contacts by GDPR flag
+DROP TABLE IF EXISTS `tbl_hubspot_sync_contact_with_GDPR_field`; 
+CREATE TABLE tbl_hubspot_sync_contact_with_GDPR_field(
+`CONTACT_ID` text,
+`EMAIL` text,
+`LASTNAME` text,
+`FIRSTNAME` text,
+`SMS` text,
+`COUNTRY` text,
+`PHONE_NUMBER` text,
+`CIVILITY` text,
+`JOB_POSITION` text,
+`ZONE` text,
+`STATE` text,
+`COMPANY` text,
+`COMPANY_TYPE` text,
+`CITY` text,
+`BIG_NAME` text,
+`KEY_ACCOUNT` text,
+`URL` text,
+`ID` text,
+`DEV_NUMBER` text,
+`ACCESS_CODE` text,
+`NAME` text,
+`ADDED_TIME` text,
+`MODIFIED_TIME` text,
+`HOLDING` text,
+`GDPR` text,
+`TELEPHONE` text,
+`PREFERENCE` text,
+`WHATSAPP` text,
+`RECORD_ID` text,
+`ADDED_TIME1` text,
+`MODIFIED_TIME1` text
+);
+
+--- 
+
+load data local infile 'C:\\Users\\crystal\\hubspot-git\\Brevo\\inputs\\testing-hubspot-contacts-with-GDPR-field.csv'
+into table tbl_hubspot_sync_contact_with_GDPR_field
+fields terminated by ';'
+lines terminated by '\n'
+ignore 1 rows;
+
+
+-- Unsubscribers From Brevo 
+
+DROP TABLE IF EXISTS `tbl_brevo_contact_unsubscribe`; 
+CREATE TABLE tbl_brevo_contact_unsubscribe(
+`CONTACT_ID` text,
+`EMAIL` text,
+`LASTNAME` text,
+`FIRSTNAME` text,
+`SMS` text,
+`COUNTRY` text,
+`PHONE_NUMBER` text,
+`CIVILITY` text,
+`JOB_POSITION` text,
+`ZONE` text,
+`STATE` text,
+`COMPANY` text,
+`COMPANY_TYPE` text,
+`CITY` text,
+`BIG_NAME` text,
+`KEY_ACCOUNT` text,
+`URL` text,
+`ID` text,
+`DEV_NUMBER` text,
+`ACCESS_CODE` text,
+`NAME` text,
+`ADDED_TIME` text,
+`MODIFIED_TIME` text,
+`HOLDING` text,
+`GDPR` text,
+`TELEPHONE` text,
+`PREFERENCE` text,
+`WHATSAPP` text,
+`RECORD_ID` text,
+`ADDED_TIME1` text,
+`MODIFIED_TIME1` text
+);
+
+
+
+load data local infile 'C:\\Users\\crystal\\hubspot-git\\Brevo\\inputs\\contacts-unsubscribers-brevo.csv'
+into table tbl_brevo_contact_unsubscribe
+fields terminated by ';'
+lines terminated by '\n'
+ignore 1 rows;
+
+
+
+
+######  App Sync out of hubspot  ########
+DROP TABLE IF EXISTS `tbl_hubspot_data_sync_excluded`; 
+CREATE TABLE tbl_hubspot_data_sync_excluded(
+`Record` text,
+`HubSpot Record ID`	 text,
+`Brevo Record ID` text,	
+`Object sync Source` text,
+`Last updated by sync` text
+);
+
+
+load data local infile 'C:\\Users\\crystal\\hubspot-git\\Brevo\\inputs\\system-syncs\\hubspot-data-sync-brevo-excluded-2024-08-29.csv'
+into table tbl_hubspot_data_sync_excluded
+fields terminated by ','
+enclosed by '"'
+lines terminated by '\n'
+ignore 1 rows;
+
+
+DROP TABLE IF EXISTS `tbl_hubspot_data_sync_brevo_in_sync`; 
+CREATE TABLE tbl_hubspot_data_sync_brevo_in_sync(
+`Record` text,	
+`HubSpot Record ID`	 text,
+`Brevo Record ID` text,	
+`Object sync` text,	
+`Last updated by sync` text
+);
+
+load data local infile 'C:\\Users\\crystal\\hubspot-git\\Brevo\\inputs\\system-syncs\\hubspot-data-sync-brevo-in-sync-2024-08-29.csv'
+into table tbl_hubspot_data_sync_brevo_in_sync
+fields terminated by ','
+enclosed by '"'
+lines terminated by '\n'
+ignore 1 rows;
+
+
+
+
+
+DROP TABLE IF EXISTS `tbl_hubspot_data_sync_brevo_failing_to_sync`; 
+Create TABLE tbl_hubspot_data_sync_brevo_failing_to_sync(
+`Record` text,
+`HubSpot Record ID` text,	
+`Brevo Record ID` text,	
+`Object sync` text,
+`Error occurred in` text,	
+`Error category` text,	
+`Error message` text,	
+`Error details` text
+);
+
+
+ 
+
+###########      Sept 3 2024       ###########
+
+
+--Hubspot  contacts by Pemba Subscription flag
+DROP TABLE IF EXISTS `tbl_hubspot_contacts_subscription`; 
+CREATE TABLE tbl_hubspot_contacts_subscription(
+`Record ID` text,	
+`First Name` text,	
+`Last Name` text,	
+`Email` text,	
+`Phone Number` text,	
+`Create Date` text,	
+`Pemba Contact ID` text,	
+`User id emtp com` text,	
+`Website username` text,	
+`emtp.com Roles` text,	
+`Unsubscribed from all email` text,	
+`Pemba Unsubscribed from all emails` text,	
+`Unsubscribed by Powersys` text,	
+`Associated Subscription` text,	
+`Associated Subscription IDs` text
+);
+
+
+load data local infile 'C:\\Users\\crystal\\hubspot-git\\Brevo\\inputs\\hubspot-crm-exports-all-contacts-2024-09-03.csv'
+into table tbl_hubspot_contacts_subscription
+fields terminated by ','
+enclosed by '"'
+lines terminated by '\n'
+ignore 1 rows;
+
+
+-- 1976 records
+
+
+
+

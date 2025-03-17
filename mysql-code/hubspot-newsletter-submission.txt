@@ -1,0 +1,20 @@
+DROP TABLE IF EXISTS tbl_hubspot_newsletter_submission_raw
+CREATE TABLE tbl_hubspot_newsletter_submission_raw(
+`Email`	 text,
+`Conversion Date` text,	
+`Conversion Page` text,	
+`Conversion Title` text,	
+`Contact first name` text,	
+`Contact last name` text,	
+`Contact email` text,	
+`Contact ID` text
+);
+
+
+
+load data local infile 'C:\\Users\\crystal\\hubspot-git\\Brevo\\inputs\\hubspot-form-submissions-newsletter-sign-up-form-2024-08-28.csv'  
+into table tbl_hubspot_newsletter_submission_raw
+fields terminated by ','
+enclosed by '"'
+lines terminated by '\n'
+ignore 1 rows;
