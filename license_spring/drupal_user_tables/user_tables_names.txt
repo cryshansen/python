@@ -1,0 +1,23 @@
+em_users	
+em_users_data	 	
+em_users_field_data
+em_user_references	 	
+em_user__field_account_status	 
+em_user__field_application	 	
+em_user__field_city	 	
+em_user__field_company_role	 	
+em_user__field_company_university	 	
+em_user__field_country	 	
+em_user__field_first_name	 	
+em_user__field_last_name
+em_user__field_license_key	
+em_user__field_maintenance_expiration	
+em_user__field_organization_type
+em_user__field_phone
+em_user__field_state_province	
+em_user__field_unit_number
+em_user__roles
+
+
+SELECT * FROM `em_users`
+where uid not in (Select entity_id as uid from em_user__roles where roles_target_id ="administrator")

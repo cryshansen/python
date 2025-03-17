@@ -1,0 +1,52 @@
+{
+  "count": 5854,
+  "next": "https://saas.licensespring.com/api/v1/customers/?limit=200&offset=400",
+  "previous": "https://saas.licensespring.com/api/v1/customers/?limit=200",
+  "results": [
+    
+    {
+      "id": 1309344449,
+      "labels": [],
+      "customer_account": null,
+      "email": "spearce@pcsbr.com",
+      "first_name": "Sam",
+      "last_name": "PEARCE",
+      "company_name": null,
+      "phone": null,
+      "reference": null,
+      "address": null,
+      "postcode": null,
+      "city": null,
+      "country": null,
+      "state": null,
+      "clabels_all": null,
+      "cognito_user_pool_id": "",
+      "metadata": {},
+      "company": 108,
+      "license_user": null,
+      "clabels": []
+    },
+    {
+      "id": 1309344450,
+      "labels": [],
+      "customer_account": null,
+      "email": "abm@example.pro",
+      "first_name": "Arthur",
+      "last_name": "Smith",
+      "company_name": null,
+      "phone": null,
+      "reference": null,
+      "address": null,
+      "postcode": null,
+      "city": null,
+      "country": null,
+      "state": null,
+      "clabels_all": null,
+      "cognito_user_pool_id": "",
+      "metadata": {},
+      "company": 108,
+      "license_user": null,
+      "clabels": []
+    },
+  ]
+}
